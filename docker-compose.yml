@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15
+    container_name: kontroll_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - .env.db
+    ports:
+      - "5432:5432"
+
+  web:
+    build:
+      context: .
+      args:
+        SECRET_KEY: ${SECRET_KEY}
+    container_name: kontroll_web
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - .env
+
+volumes:
+  postgres_data:
