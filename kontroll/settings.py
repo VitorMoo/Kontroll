@@ -14,6 +14,8 @@ from pathlib import Path
 import environ
 import os
 
+AUTH_USER_MODEL = 'core.User'
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
