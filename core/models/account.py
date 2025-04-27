@@ -21,7 +21,7 @@ class Account(models.Model):
     currency = models.CharField(max_length=3, default="BRL",validators=[RegexValidator(r"^[A-Z]{3}$")])
     is_archived  = models.BooleanField(default=False)
     updated_at = models.DateTimeField(auto_now=True)
-    notes = models.CharField(max_length=250)
+    notes = models.CharField(max_length=250, default='')
 
     class Meta:
         verbose_name = ('Account')
