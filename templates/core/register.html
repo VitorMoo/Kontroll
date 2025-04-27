@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+    <h1>Create your account</h1>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li style="color: green;">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+
+        <p>
+            {{ form.username.label_tag }}<br>
+            {{ form.username }}
+            {{ form.username.errors }}
+        </p>
+
+        <p>
+            {{ form.email.label_tag }}<br>
+            {{ form.email }}
+            {{ form.email.errors }}
+        </p>
+
+        <p>
+            {{ form.cpf.label_tag }}<br>
+            {{ form.cpf }}
+            {{ form.cpf.errors }}
+        </p>
+
+        <p>
+            {{ form.telephone_number.label_tag }}<br>
+            {{ form.telephone_number }}
+            {{ form.telephone_number.errors }}
+        </p>
+
+        <p>
+            {{ form.password1.label_tag }}<br>
+            {{ form.password1 }}
+            {{ form.password1.errors }}
+        </p>
+
+        <p>
+            {{ form.password2.label_tag }}<br>
+            {{ form.password2 }}
+            {{ form.password2.errors }}
+        </p>
+
+        <button type="submit">Register</button>
+    </form>
+
+
+</body>
+</html>
