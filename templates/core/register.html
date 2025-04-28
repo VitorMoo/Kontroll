@@ -1,64 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-</head>
-<body>
-    <h1>Create your account</h1>
+{% extends 'base.html' %}
+{% load static %}
 
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li style="color: green;">{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+{% block title %}Sign up{% endblock %}
 
-    <form method="post">
-        {% csrf_token %}
+{% block content %}
+<div class="container" style="min-height: 100vh; display: flex; align-items: center; justify-content: center;">
 
-        {{ form.non_field_errors }}
+    <div class="card shadow-lg" style="max-width: 900px; width: 100%; border-radius: 1rem; overflow: hidden;">
 
-        <p>
-            {{ form.username.label_tag }}<br>
-            {{ form.username }}
-            {{ form.username.errors }}
-        </p>
+        <div class="row g-0">
 
-        <p>
-            {{ form.email.label_tag }}<br>
-            {{ form.email }}
-            {{ form.email.errors }}
-        </p>
+            <div class="col-lg-6 p-5 d-flex flex-column justify-content-center">
 
-        <p>
-            {{ form.cpf.label_tag }}<br>
-            {{ form.cpf }}
-            {{ form.cpf.errors }}
-        </p>
+                <div class="text-center mb-4">
+                    <h1 class="h3 fw-bold">Sign up</h1>
+                    <p class="text-muted small">Sign up to enjoy the features of Kontroll</p>
+                </div>
 
-        <p>
-            {{ form.telephone_number.label_tag }}<br>
-            {{ form.telephone_number }}
-            {{ form.telephone_number.errors }}
-        </p>
+                <form method="post" class="user">
+                    {% csrf_token %}
 
-        <p>
-            {{ form.password1.label_tag }}<br>
-            {{ form.password1 }}
-            {{ form.password1.errors }}
-        </p>
+                    <div class="mb-3">
+                        <input type="text" name="username" class="form-control form-control-user" placeholder="Your Name" required>
+                    </div>
 
-        <p>
-            {{ form.password2.label_tag }}<br>
-            {{ form.password2 }}
-            {{ form.password2.errors }}
-        </p>
+                    <div class="mb-3">
+                        <input type="text" name="telephone_number" class="form-control form-control-user" placeholder="Telephone Number" required>
+                    </div>
 
-        <button type="submit">Register</button>
-    </form>
+                    <div class="mb-3">
+                        <input type="email" name="email" class="form-control form-control-user" placeholder="Email" required>
+                    </div>
 
+                    <div class="mb-3">
+                        <input type="password" name="password" class="form-control form-control-user" placeholder="Password" required>
+                    </div>
 
-</body>
-</html>
+                    <div class="d-grid mb-3">
+                        <button type="submit" class="btn btn-primary">
+                            Sign up
+                        </button>
+                    </div>
+
+                </form>
+
+                <div class="text-center mt-3">
+                    <small class="text-muted">Already have an account? <a href="">Sign in</a></small>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 d-none d-lg-block"
+                 style="background-image: url('{% static 'img/register-side.png' %}');
+                        background-position: center;
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        border-top-right-radius: 1rem;
+                        border-bottom-right-radius: 1rem;">
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
