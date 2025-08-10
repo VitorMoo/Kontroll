@@ -1,65 +1,164 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Sign up{% endblock %}
+{% block title %}Criar Conta — Kontroll{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock %}
 
 {% block content %}
-<div class="container" style="min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+<section class="register-section">
+    <div class="container">
+        <div class="register-card fade-in">
 
-    <div class="card shadow-lg" style="max-width: 900px; width: 100%; border-radius: 1rem; overflow: hidden;">
+            <div class="register-grid">
 
-        <div class="row g-0">
+                <!-- Área do Formulário -->
+                <div class="register-form-area">
 
-            <div class="col-lg-6 p-5 d-flex flex-column justify-content-center">
-
-                <div class="text-center mb-4">
-                    <h1 class="h3 fw-bold">Sign up</h1>
-                    <p class="text-muted small">Sign up to enjoy the features of Kontroll</p>
-                </div>
-
-                <form method="post" class="user">
-                    {% csrf_token %}
-
-                    <div class="mb-3">
-                        <input type="text" name="username" class="form-control form-control-user" placeholder="Your Name" required>
+                    <!-- Cabeçalho -->
+                    <div class="register-header">
+                        <div class="register-brand">
+                            <div class="brand-mark">K</div>
+                            <span style="font-weight: 800; font-size: 1.25rem;">Kontroll</span>
+                        </div>
+                        <h1 class="register-title">Crie sua conta</h1>
+                        <p class="register-subtitle">Comece sua jornada financeira inteligente</p>
                     </div>
 
-                    <div class="mb-3">
-                        <input type="text" name="telephone_number" class="form-control form-control-user" placeholder="Telephone Number" required>
-                    </div>
+                    <form method="post" id="register-form" class="fade-in-up">
+                        {% csrf_token %}
 
-                    <div class="mb-3">
-                        <input type="email" name="email" class="form-control form-control-user" placeholder="Email" required>
-                    </div>
+                        <div class="form-group">
+                            <label for="username" class="form-label">Nome Completo</label>
+                            <input type="text"
+                                   id="username"
+                                   name="username"
+                                   class="form-input"
+                                   placeholder="Digite seu nome completo"
+                                   autocomplete="name"
+                                   required
+                                   aria-describedby="username-help">
+                            <div id="username-help" class="sr-only">Seu nome completo como aparece nos documentos</div>
+                        </div>
 
-                    <div class="mb-3">
-                        <input type="password" name="password" class="form-control form-control-user" placeholder="Password" required>
-                    </div>
+                        <div class="form-group">
+                            <label for="telephone" class="form-label">Telefone</label>
+                            <input type="tel"
+                                   id="telephone"
+                                   name="telephone_number"
+                                   class="form-input"
+                                   placeholder="(11) 99999-9999"
+                                   autocomplete="tel"
+                                   required
+                                   aria-describedby="phone-help">
+                            <div id="phone-help" class="sr-only">Seu número de telefone com DDD</div>
+                        </div>
 
-                    <div class="d-grid mb-3">
-                        <button type="submit" class="btn btn-primary">
-                            Sign up
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email"
+                                   id="email"
+                                   name="email"
+                                   class="form-input"
+                                   placeholder="seu@email.com"
+                                   autocomplete="email"
+                                   required
+                                   aria-describedby="email-help">
+                            <div id="email-help" class="sr-only">Será usado para login e comunicações importantes</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="form-label">Senha</label>
+                            <div class="password-container">
+                                <input type="password"
+                                       id="password"
+                                       name="password"
+                                       class="form-input"
+                                       placeholder="Crie uma senha segura"
+                                       minlength="6"
+                                       autocomplete="new-password"
+                                       required
+                                       aria-describedby="password-help">
+                                <button type="button"
+                                        class="password-toggle"
+                                        aria-label="Mostrar senha">
+                                    <i class="fas fa-eye" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div id="password-help" class="sr-only">Pelo menos 6 caracteres com letras e números</div>
+                        </div>
+
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" required aria-describedby="terms-help">
+                            <div class="checkbox-text">
+                                Li e aceito os <a href="#" target="_blank" rel="noopener">Termos de Uso</a>
+                                e <a href="#" target="_blank" rel="noopener">Política de Privacidade</a>
+                            </div>
+                        </label>
+                        <div id="terms-help" class="sr-only">É necessário aceitar os termos para criar sua conta</div>
+
+                        <button type="submit" class="register-button" aria-describedby="submit-help">
+                            <i class="fas fa-rocket" aria-hidden="true"></i>
+                            Criar minha conta grátis
                         </button>
+                        <div id="submit-help" class="sr-only">Criar sua conta no Kontroll gratuitamente</div>
+
+                        <div class="login-link">
+                            <small class="text-muted">
+                                Já tem uma conta?
+                                <a href="/" rel="nofollow">Fazer login</a>
+                            </small>
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <!-- Área Visual -->
+                <div class="register-visual" aria-hidden="true">
+
+                    <div class="register-visual-content fade-in-up">
+                        <div class="register-visual-icon">
+                            <i class="fas fa-chart-line" aria-hidden="true"></i>
+                        </div>
+
+                        <h2 class="register-visual-title">Sua IA Financeira te espera!</h2>
+
+                        <p class="register-visual-description">
+                            Organize suas finanças, receba insights inteligentes e atinja suas metas mais rápido com nossa IA.
+                        </p>
+
+                        <!-- Features -->
+                        <div class="features-list">
+                            <div class="feature-item fade-in-up">
+                                <i class="fas fa-check-circle feature-icon" aria-hidden="true"></i>
+                                <span class="feature-text">100% gratuito durante o beta</span>
+                            </div>
+                            <div class="feature-item fade-in-up">
+                                <i class="fas fa-shield-alt feature-icon" aria-hidden="true"></i>
+                                <span class="feature-text">Dados criptografados e seguros</span>
+                            </div>
+                            <div class="feature-item fade-in-up">
+                                <i class="fas fa-brain feature-icon" aria-hidden="true"></i>
+                                <span class="feature-text">IA personalizada para você</span>
+                            </div>
+                            <div class="feature-item fade-in-up">
+                                <i class="fas fa-mobile-alt feature-icon" aria-hidden="true"></i>
+                                <span class="feature-text">Acesso em qualquer dispositivo</span>
+                            </div>
+                        </div>
                     </div>
 
-                </form>
-
-                <div class="text-center mt-3">
-                    <small class="text-muted">Already have an account? <a href="">Sign in</a></small>
                 </div>
 
             </div>
-
-            <div class="col-lg-6 d-none d-lg-block"
-                 style="background-image: url('{% static 'img/register-side.png' %}');
-                        background-position: center;
-                        background-size: cover;
-                        background-repeat: no-repeat;
-                        border-top-right-radius: 1rem;
-                        border-bottom-right-radius: 1rem;">
-            </div>
-
         </div>
     </div>
-</div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/register.js' %}"></script>
 {% endblock %}

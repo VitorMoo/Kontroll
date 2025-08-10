@@ -4,6 +4,12 @@ from django.contrib import messages
 from django.views import View
 from core.models import User
 
+class HomeView(View):
+    template_name = 'core/home.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
 class UserRegisterView(View):
     template_name = 'core/register.html'
 
